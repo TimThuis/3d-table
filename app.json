@@ -19,7 +19,7 @@
 			"type": "PerspectiveCamera",
 			"name": "Camera",
 			"visible": false,
-			"matrix": [0.855655,0,-0.517547,0,-0.189946,0.930215,-0.314036,0,0.481431,0.367012,0.795944,0,49.068623,48.025654,78.335538,1],
+			"matrix": [0.855655,0,-0.517547,0,-0.197146,0.924606,-0.325939,0,0.478527,0.380924,0.791144,0,39.01383,47.289167,60.011597,1],
 			"fov": 50,
 			"zoom": 1,
 			"near": 0.1,
@@ -941,13 +941,14 @@
 				"dithering": false
 			},
 			{
-				"uuid": "F394F3C4-587A-4290-B573-BB0647529874",
-				"type": "MeshStandardMaterial",
+				"uuid": "889AB3C5-2427-462C-AEF9-2E342FD0822D",
+				"type": "MeshPhysicalMaterial",
 				"color": 16777215,
-				"roughness": 1,
-				"metalness": 0,
+				"roughness": 0.5,
+				"metalness": 0.5,
 				"emissive": 0,
-				"blending": 0,
+				"clearCoat": 0,
+				"clearCoatRoughness": 0,
 				"depthFunc": 3,
 				"depthTest": true,
 				"depthWrite": true,
@@ -1272,10 +1273,9 @@
 					"uuid": "A38B3109-472B-4473-A71B-D82B4FFDE8EE",
 					"type": "Mesh",
 					"name": "plane",
-					"receiveShadow": true,
 					"matrix": [-100,0,0,0,0,0,100,0,0,100,0,0,0,0,0,1],
 					"geometry": "D1811CC0-BFDE-40E2-AC2E-579548BCFBE7",
-					"material": "F394F3C4-587A-4290-B573-BB0647529874"
+					"material": "889AB3C5-2427-462C-AEF9-2E342FD0822D"
 				},
 				{
 					"uuid": "312A0423-0522-493B-BE00-72928814F33D",
