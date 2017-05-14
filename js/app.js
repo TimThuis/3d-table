@@ -291,6 +291,16 @@ var APP = {
 
     }
 
+    let clicked = false;
+
+    const tableAnimation = new TimelineMax({
+      paused: true
+    });
+    const cameraMovement = new TimelineMax({
+      paused: true
+    });
+
+
     function onDocumentMouseDown(event) {
       const table = scene.children[1];
       const poten = table.children[0];
@@ -299,11 +309,21 @@ var APP = {
       const biskets = table.children[3];
       const regelsBeneden = table.children[4];
       const mounts = table.children[5];
-      let clicked = false;
 
+      blad.children.forEach(function(element) {
+        // console.log(element);
+        // element.material.transparent = true;
+        // element.material.opacity = 0.5;
+      });
 
-      const tableAnimation = new TimelineMax();
-      const cameraMovement = new TimelineMax();
+      if (!clicked) {
+        tableAnimation.play();
+        cameraMovement.play();
+        clicked = !clicked;
+      } else {
+        tableAnimation.reverse();
+        clicked = !clicked;
+      }
 
       tableAnimation.to([blad.position, biskets.position], 4, {
         y: 12
@@ -323,16 +343,16 @@ var APP = {
         .to(blad.children[4].position, 2, {
           x: -8
         }, 'start+=2')
-        .to(biskets.children[0].position, 1, {
+        .to(biskets.children[0].position, 2, {
           x: 2,
         }, 'start+=2')
-        .to(biskets.children[1].position, 1, {
+        .to(biskets.children[1].position, 2, {
           x: -2,
         }, 'start+=2')
-        .to(biskets.children[2].position, 1, {
+        .to(biskets.children[2].position, 2, {
           x: 6,
         }, 'start+=2')
-        .to(biskets.children[3].position, 1, {
+        .to(biskets.children[3].position, 2, {
           x: -6,
         }, 'start+=2')
         .to(poten.children[0].position, 2, {
@@ -368,19 +388,33 @@ var APP = {
         y: 7
       })
 
-
-
       dispatch(events.mousedown, event);
-
     }
 
     function onDocumentMouseUp(event) {
-
       dispatch(events.mouseup, event);
 
     }
 
+    let hoverElements;
+
     function onDocumentMouseMove(event) {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, camera);
+      let elements = scene.children[1].children[0].children;
+      let intersects = raycaster.intersectObjects(elements);
+
+      if (intersects.length > 0) {
+        console.log(intersects)
+      // intersects[0].object.material.transparent = true;
+      // intersects[0].object.material.opacity = 0.5;
+      // hoverElements = intersects[0];
+      } else if (hoverElements != null) {
+        // hoverElements.object.material.transparent = false;
+        // hoverElements.object.material.opacity = 1;
+      }
 
       dispatch(events.mousemove, event);
 

@@ -33,8 +33,9 @@
 		<script src="js/three.min.js"></script>
 		<script src="js/app.js"></script>
 
+		<!-- <a-scene></a-scene> -->
 		<script>
-
+			// var aScene = document.querySelector('a-scene');
 			var loader = new THREE.FileLoader();
 			loader.load( 'app.json', function ( text ) {
 
@@ -43,6 +44,7 @@
 				player.setSize( window.innerWidth, window.innerHeight );
 				player.play();
 
+				// console.log(player)
 				document.body.appendChild( player.dom );
 
 				window.addEventListener( 'resize', function () {
@@ -57,9 +59,7 @@
 					button.textContent = 'EDIT';
 					document.body.appendChild( button );
 				}
-
 			} );
-
 		</script>
 	</body>
 </html>
