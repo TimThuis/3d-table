@@ -302,6 +302,7 @@ var APP = {
 
 
     function onDocumentMouseDown(event) {
+      console.log(scene);
       const table = scene.children[1];
       const poten = table.children[0];
       const regelsBoven = table.children[1];
